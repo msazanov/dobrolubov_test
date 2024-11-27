@@ -3,9 +3,6 @@ services:
     build:
       context: ./test-app
     container_name: test-app
-    privileged: true
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     restart: unless-stopped
     networks:
       monitoring-net:
