@@ -1,0 +1,31 @@
+services:
+  test-app:
+    build:
+      context: ./test-app
+    container_name: test-app
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    restart: unless-stopped
+    networks:
+      monitoring-net:
+
+  test-server:
+    build:
+      context: ./test-server
+    container_name: test-server
+    ports:
+      - "443:443"
+    restart: unless-stopped
+    networks:
+      monitoring-net:
+        aliases:
+          - test.com
+
+volumes:
+  logs:
+
+networks:
+  monitoring-net:
+    driver: bridge
+

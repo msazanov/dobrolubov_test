@@ -1,0 +1,15 @@
+[Unit]
+Description=Monitor Script Service
+After=network.target
+
+[Service]
+ExecStart=/srv/test/test-script/monitor.sh
+Restart=always
+StandardOutput=append:/var/log/monitor.out.log
+StandardError=append:/var/log/monitor.err.log
+User=root
+WorkingDirectory=/srv/test
+
+[Install]
+WantedBy=multi-user.target
+
